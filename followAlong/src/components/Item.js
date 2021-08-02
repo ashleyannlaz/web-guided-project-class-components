@@ -8,16 +8,18 @@ const Item = props => {
   // }) ;
 
   const handleClick = () => {
-    console.log('item props',props)
-    console.log('item:'+ props.item.name)
+    console.log('Item Props',props)
+    console.log('Item Name:'+ props.item.name)
     props.toggleItem(props.item.id);
     //whatever id im clicking on gets logged
 
     //tells us what item we are clicking on
     //changed purchased to true
     // setItem({
-    //   ...item,
-    //   purchased: !item.purchased
+    //   ...item, //spread item
+    //   purchased: !item.purchased // will turn it to the opposite
+        // (item.purchased)?false:true
+
     // })
 
   }

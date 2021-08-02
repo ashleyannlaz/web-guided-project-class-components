@@ -12,7 +12,7 @@ const groceries = [
     purchased: false
   },
   {
-    name: 'Torillas',
+    name: 'Tortillas',
     id: 124,
     purchased: false
   },
@@ -41,16 +41,15 @@ const groceries = [
 class App extends React.Component {
   // Constructor with state
   constructor() {
-    super();
-    this.state = {
-      groceries:groceries
+    super(); // extending something
+    this.state = { // define state
+      groceries:groceries //pass in the array
       // name: value
     }
   }
 
   toggleItem = id => {
-
-    console.log(id);
+    // console.log(id);
     // set state for groceries with id's purchase flipped
     this.setState({
     ...this.state.groceries,
@@ -67,15 +66,41 @@ class App extends React.Component {
     });
   }
 
+  handleAddItem = (name) => {
+    const newItem = {
+      name: name,
+      id: Date.now(),
+      purchased: false
+    }
+
+    this.setState({
+      groceries: [...this.state.groceries, newItem]
+    })
+  }
+
+  handleClear = () => {
+    //filter through groceries
+    //remove all groceries where purchased === true
+    this.setState({
+      ...this.state,
+      groceries: this.state.groceries.filter(item => {
+        return(item.purchased === false);
+      })
+    })
+  }
+
   // Class methods to update state
   render() {
     return (
       <div className="App">
         <div className="header">
            <h1>Shopping List</h1>
-           <ListForm />
+           <ListForm handleAddItem={this.handleAddItem} />
          </div>
-        <GroceryList toggleItem={this.toggleItem} groceries={this.state.groceries} />
+        <GroceryList toggleItem={this.toggleItem} 
+                     groceries={this.state.groceries} 
+                     handleClear={this.handleClear}// passed in groceries array from state
+         />
        </div>
     );
   }

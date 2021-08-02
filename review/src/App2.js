@@ -15,6 +15,7 @@ class Person extends React.Component {
             <div>
             <h1>Hello, {this.props.name}!</h1>
             <h2>Are you {this.props.age}?</h2>
+            <p>Come on in the waters fine.</p>
             </div>
             );
     }
@@ -22,8 +23,10 @@ class Person extends React.Component {
 
 class App2 extends React.Component {
     constructor() { 
+        //call constructor to access all options
         super();
         this.state = {
+            // basically like using useState
             name: 'Ashley',
             age: 29
         }
