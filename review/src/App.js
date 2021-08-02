@@ -3,20 +3,30 @@ import { createRenderer } from 'react-dom/test-utils';
 
 // extends React.Component
 const App = () => {
-  const [name, setName] = useState("Ashley");
-  const [age, setAge] = useState(34);
+  // const [name, setName] = useState("Ashley");
+  // const [age, setAge] = useState(29);
+
+  const [state, setState] = useState({
+    name: "Ashley",
+    age: 29
+   });
 
   const handleClick = () => {
     console.log('clicked in method')
-    setName('Allison');
-    setAge(12);
+    // setName('Allison');
+    // setAge(12);
+    setState({
+      name: "Emma",
+      age: 3
+     });
+
   }
 
-  const Person = () => {
+  const Person = (props) => {
     return (<>
-      <h2>Hello, {name}!</h2>
-      <p>Wow. That is a great name, {name}. Never change your name.</p>
-      <h2>Are you {age}?</h2></>
+      <h2>Hello, {props.name}!</h2>
+      <p>Wow. That is a great name, {props.name}. Never change your name.</p>
+      <h2>Are you {props.age}?</h2></>
     )
   }
   
@@ -26,8 +36,8 @@ const App = () => {
   
     return (
       <div>
-        <Person name={name} age={age}/>
-        <button onClick={handleClick}>Change the name</button>
+        <Person name={state.name} age={state.age}/>
+        <button onClick={handleClick}>Change it up!</button>
       </div>
     );
 }

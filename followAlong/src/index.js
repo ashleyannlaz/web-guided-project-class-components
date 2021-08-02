@@ -44,7 +44,27 @@ class App extends React.Component {
     super();
     this.state = {
       groceries:groceries
+      // name: value
     }
+  }
+
+  toggleItem = id => {
+
+    console.log(id);
+    // set state for groceries with id's purchase flipped
+    this.setState({
+    ...this.state.groceries,
+    groceries: this.state.groceries.map(item => {
+      if (item.id === id) {
+        return ({
+          ...item,
+          purchased: !item.purchased
+        })
+      } else {
+        return item
+      }
+    })
+    });
   }
 
   // Class methods to update state
@@ -55,7 +75,7 @@ class App extends React.Component {
            <h1>Shopping List</h1>
            <ListForm />
          </div>
-        <GroceryList groceries={groceries} />
+        <GroceryList toggleItem={this.toggleItem} groceries={this.state.groceries} />
        </div>
     );
   }
